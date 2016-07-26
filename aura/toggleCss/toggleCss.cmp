@@ -1,0 +1,5 @@
+<!--docsample:toggleCss-->
+<aura:component >
+    <ui:button label="Toggle" press="{!c.toggle}"/>
+    <p aura:id="text">Now you see me</p>
+</aura:component>
