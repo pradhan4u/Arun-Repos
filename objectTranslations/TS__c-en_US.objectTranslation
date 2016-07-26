@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>TS</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>TS</value>
+    </caseValues>
+    <fields>
+        <label><!-- Singer --></label>
+        <name>Singer__c</name>
+        <relationshipLabel><!-- Singer --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Track --></label>
+        <name>Track__c</name>
+        <relationshipLabel><!-- Track --></relationshipLabel>
+    </fields>
+    <startsWith>Consonant</startsWith>
+</CustomObjectTranslation>
