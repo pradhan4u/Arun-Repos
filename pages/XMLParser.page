@@ -1,0 +1,13 @@
+<apex:page controller="SampleClass" sidebar="false" showheader="false">
+    <apex:form >
+    
+    
+        <apex:inputTextarea cols="60" rows="40" value="{!TexttoParse}"/>
+        
+        <apex:inputTextarea cols="60" rows="40" id="result" value="{!ParsedText}"/>
+        <br/>
+        <apex:commandButton value="Parser" action="{!Parsefn}" reRender="result"/>
+        
+    </apex:form>
+
+</apex:page>

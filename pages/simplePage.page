@@ -1,0 +1,4 @@
+<apex:page controller="simple">
+	<apex:form rendered="{!abc}">
+	</apex:form>
+</apex:page>
