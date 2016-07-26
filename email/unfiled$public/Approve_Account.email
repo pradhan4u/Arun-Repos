@@ -1,0 +1,3 @@
+{!User.Manager},
+Account with account number {!Account.AccountNumber} has been created. Please approve this account creation.
+Thank you.
