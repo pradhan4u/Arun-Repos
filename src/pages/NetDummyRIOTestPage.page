@@ -1,0 +1,61 @@
+<apex:page standardController="Case" extensions="NetDummyRIOTestPageController" showHeader="false" id="p" sidebar="false">
+  <!--<apex:includeScript value="/soap/ajax/28.0/connection.js"/> -->
+  <apex:includeScript value="/support/console/28.0/integration.js"/>
+
+  <apex:form id="f">
+     <apex:pageBlock id="pb" >
+        <center><apex:commandButton value="Submit"  onclick="testIsInConsole()" rerender="pbs"/> </center> <!-- action="{!LoadNetForm}"onclick="testIsInConsole()" -->
+        <!--<button onclick="testIsInConsole()">SubmitHtml</button> -->
+        <!--<a href="javascript:sforce.console.openPrimaryTab(null,'https://residentialagentdesktop--d1.cs11.my.salesforce.com/apex/Net360_Choice?accountId=&contactId=',true,'excalation');">Hit Me</a>-->
+        <apex:pageBlockSection title="RIO Parameters" id="pbs">
+            <apex:inputText label="AccountId" value="{!accountId}" id="input1"/>
+        </apex:pageBlockSection>
+     </apex:pageBlock>
+  </apex:form>
+  <script type="text/javascript">
+        var accountId;
+        var focusTabId;
+        var url;
+        sforce.console.setTabTitle('Account Search');
+        function testIsInConsole() {
+            if (sforce.console.isInConsole()) {
+                  
+                  accountId = document.getElementById('p:f:pb:pbs:input1').value;
+                  //sforce.console.getFocusedPrimaryTabId(showTabId);
+                  //url = '/apex/caseExcalation'+location.search+'&agentId=adeace01&act='+accountId;
+                  // url = '/apex/caseExcalation?agentId=adeace01&act='+accountId;
+                  //url = 'https://residentialagentdesktop--d1.cs11.my.salesforce.com/ui/support/servicedesk/ServiceDeskPage#%2Fapex/caseExcalation?agentId=adeace01&act='+accountId+'&inline=1';
+                  //window.top.location.href = '/apex/caseExcalation?agentId=adeace01&act='+accountId;
+                  alert('Account Id: '+accountId);
+                  if(accountId != null && accountId != ''){
+                  
+                      url= 'apex/myPage';
+                    // url = 'apex/Net360_Choice?agentId=adeace01&contactId=&act='+accountId;
+                  }
+                  else{
+                  
+                      alert('blank ac');
+                  }
+                 
+              //   var openSubtab = function(result) {
+              //   sforce.console.openSubtab(result.id,url,true,'Excalation Form', null, 'Excalation Form');
+              //   };
+             //    sforce.console.getEnclosingPrimaryTabId(openSubtab);
+              
+               sforce.console.openPrimaryTab(undefined, url , true, 'salesforce');    
+                  //sforce.console.openPrimaryTab(null, url, true, 'Excalation Form', null, 'Excalation Form');
+                  
+                  
+                  
+                 // window.open(url,'_parent');
+                 // try{
+                    // sforce.console.openSubTab(focusTabId , url , false, 'Excalation Form', null, 'Excalation Form')
+                  //}
+                 // catch(e){alert(e)}
+               } else {
+                  alert('not in console');
+            }
+        }
+
+    </script>
+</apex:page>

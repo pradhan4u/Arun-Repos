@@ -1,0 +1,6 @@
+<apex:page >
+	<apex:form >
+		<apex:commandButton title="Button" accesskey="test" />
+	</apex:form>
+
+</apex:page>
