@@ -1,0 +1,10 @@
+<aura:component controller="DisplayCaseController">
+    <aura:handler name="init" value="{!this}" action="{!c.getCaseDetails}"/>
+	<aura:attribute name="record" type="Case"/>
+	<ui:button label="Get Case Details" press="{!c.getCaseDetails}"/>
+    {!v.record.subject} <br/>
+    {!v.record.description } <br/>
+     {!v.record.status} <br/>
+
+    Enter Case Id: <ui:inputNumber aura:id="caseID"/> <br/>
+</aura:component>
