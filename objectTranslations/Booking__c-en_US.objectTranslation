@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>Booking</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>Bookings</value>
+    </caseValues>
+    <fields>
+        <label><!-- Advanced amount --></label>
+        <name>Advanced_amount__c</name>
+    </fields>
+    <fields>
+        <label><!-- Booking From date --></label>
+        <name>Booking_From_date__c</name>
+    </fields>
+    <fields>
+        <label><!-- Booking To date --></label>
+        <name>Booking_To_date__c</name>
+    </fields>
+    <fields>
+        <label><!-- Car --></label>
+        <name>Cars__c</name>
+        <relationshipLabel><!-- Bookings --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Customer name(look up) --></label>
+        <name>Customer_name_look_up__c</name>
+        <relationshipLabel><!-- Bookings --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Driver --></label>
+        <name>Driver__c</name>
+        <relationshipLabel><!-- Bookings --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Drop point --></label>
+        <name>Drop_point__c</name>
+    </fields>
+    <fields>
+        <label><!-- Fare --></label>
+        <name>Fare__c</name>
+    </fields>
+    <fields>
+        <label><!-- Id proof --></label>
+        <name>Id_proof__c</name>
+    </fields>
+    <fields>
+        <label><!-- Pick up point --></label>
+        <name>Pick_up_point__c</name>
+    </fields>
+    <fields>
+        <label><!-- Status --></label>
+        <name>Status__c</name>
+        <picklistValues>
+            <masterLabel>closed</masterLabel>
+            <translation><!-- closed --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>confirmed</masterLabel>
+            <translation><!-- confirmed --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>open</masterLabel>
+            <translation><!-- open --></translation>
+        </picklistValues>
+    </fields>
+    <recordTypes>
+        <label><!-- Test --></label>
+        <name>Test</name>
+    </recordTypes>
+    <startsWith>Consonant</startsWith>
+    <webLinks>
+        <label><!-- New_Car --></label>
+        <name>New_Car</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- New_Driver --></label>
+        <name>New_Driver</name>
+    </webLinks>
+</CustomObjectTranslation>
