@@ -1,0 +1,4 @@
+<!-- helloWorld.cmp -->
+<aura:component implements="force:appHostable">
+<p>Hello Lightning!</p>
+</aura:component>
