@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>Booking_Status</letterhead>
+    <name>Booking Status</name>
+    <style>freeForm</style>
+    <subject>Car Booking Id: {!Booking__c.Name} confirmation</subject>
+    <textOnly>Dear {!Booking__c.Customer_name_look_up__c},
+Your booking Id {!Booking__c.Name} has been confirmed. The details are as follows.
+Car: {!Booking__c.Cars__c}
+From Date: {!Booking__c.Booking_From_date__c}
+To Date: {!Booking__c.Booking_To_date__c}
+Pick up point: {!Booking__c.Pick_up_point__c}
+
+Thanking you,
+Simpsons</textOnly>
+    <type>html</type>
+</EmailTemplate>
