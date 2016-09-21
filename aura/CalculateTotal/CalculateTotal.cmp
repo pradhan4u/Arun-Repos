@@ -1,0 +1,11 @@
+<aura:component >
+    <aura:attribute name="totalValue" type="Integer" default="0" />
+	<ui:inputNumber aura:id="inputOne"/>
+    <ui:inputNumber aura:id="inputTwo"/>
+    <ui:inputNumber aura:id="inputThree"/>
+    <aura:handler name="change" value="{!v.inputOne}" action="{!c.calculate}"/>
+	<aura:handler name="change" value="{!v.inputTwo}" action="{!c.calculate}"/>
+    <aura:handler name="change" value="{!v.inputThree}" action="{!c.calculate}"/>
+    <ui:button label="calculate" press="{!c.calculate}"/>
+    <ui:outputNumber aura:id="totalValue" value="{!v.totalValue}"/>
+</aura:component>
