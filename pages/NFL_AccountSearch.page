@@ -1,0 +1,114 @@
+<apex:page id="pageId" standardController="account" sidebar="false" showChat="false" extensions="NFL_AccountSearchExtension" >
+    <script type='text/javascript'>
+        <apex:includeScript value="/support/console/22.0/integration.js"/>
+        function disableEnableAccountSearchBox()
+        {
+            var EmailidV=  document.getElementById('pageId:formid:searchPbId:searchPbsId:searchEPbsItId:emailId').value;
+            if( EmailidV.length >0)
+               document.getElementById('pageId:formid:searchPbId:searchPbsId:searchAPbsItId:accNumId').disabled=true; 
+            else
+                document.getElementById('pageId:formid:searchPbId:searchPbsId:searchAPbsItId:accNumId').disabled=false; 
+        }
+        function clearinputtext(input) {
+                input.value = '';              
+        }
+        function disableEnableEmailIdSearchBox()
+        {
+            var AccIdV=  document.getElementById('pageId:formid:searchPbId:searchPbsId:searchAPbsItId:accNumId').value;
+            if( AccIdV.length >0)
+               document.getElementById('pageId:formid:searchPbId:searchPbsId:searchEPbsItId:emailId').disabled=true; 
+            else
+                document.getElementById('pageId:formid:searchPbId:searchPbsId:searchEPbsItId:emailId').disabled=false; 
+        }
+        function pressEnter(e){
+            if(window.event){
+                key = window.event.keyCode; //IE
+            } else{
+                key = e.which; //firefox
+            }
+            if(key == 13) {
+                var ele = document.getElementById('pageId:formid:searchPbId:submitBtn');
+                ele.click();
+                return false;
+            } else{
+                return true;
+            }
+        }
+        function CheckForValue()
+        {
+            
+            var EmailVa = document.getElementById('pageId:formid:searchPbId:searchPbsId:searchEPbsItId:emailId').value;
+            var AcconVa = document.getElementById('pageId:formid:searchPbId:searchPbsId:searchAPbsItId:accNumId').value;
+            if(EmailVa.length == 0 && AcconVa.length == 0)
+            {
+                alert('Please enter either Account Number or Email ID.');
+                return false;
+            } else {
+                Submit();
+                return true;
+            }
+        }
+        
+    </script>
+    <apex:form id="formid" >
+        <apex:pageblock id="searchPbId" mode="edit" title="Account Search"  tabStyle="Account">
+            <apex:pageblockSection id="searchPbsId" collapsible="false" columns="2">
+                <apex:pageblockSectionItem id="searchAPbsItId">
+                    <apex:outputlabel value="Account Number"/>
+                    <apex:inputText disabled="false" onkeypress="return pressEnter(event);" onkeyup="disableEnableEmailIdSearchBox();return false;" id="accNumId" value="{!AccNum}"  />
+                </apex:pageblockSectionItem>
+                <apex:pageblockSectionItem id="searchEPbsItId">
+                    <apex:outputlabel value="Email ID"/>
+                    <apex:inputText disabled="false" onkeypress="return pressEnter(event);" onkeyup="disableEnableAccountSearchBox();return false;" id="emailId" value="{!EmailId}"  />
+                </apex:pageblockSectionItem>
+            </apex:pageblockSection>
+            <center><apex:commandButton value="Submit" id="submitBtn" onclick="return CheckForValue();" reRender="AccountDetOP,AccountDetailId" status="categoryAjaxStatus" /></center>
+            <apex:actionStatus id="categoryAjaxStatus" >
+                <apex:facet name="stop">
+                    <apex:outputPanel layout="none" rendered="true" ></apex:outputPanel>
+                </apex:facet>
+                <apex:facet name="start">
+                    <apex:outputPanel layout="none" style="float:center;">
+                     <apex:image value="/img/loading.gif" style="position:fixed;top:50%;right:50%;" />
+                    </apex:outputPanel> 
+                </apex:facet>
+            </apex:actionStatus>
+        </apex:pageblock>
+        <apex:outputPanel id="AccountDetOP">
+            <apex:pageblock rendered="{!ShowAccountTable}" title="Account Search Result(s)">
+                <apex:pagemessages />
+                <apex:outputPanel rendered="{!!isAccountDateAv}">
+                    <a href="javascript:sforce.console.openPrimaryTab(null,'/00Q/e',true,'New Lead');">Wish to create a new prospect? Click Here</a>
+                </apex:outputPanel>
+                <apex:pageblockTable value="{!AccountResultSet}" var="ata">
+                    <apex:column rendered="{!isAccountDateAv}" headervalue="Name">
+                        <a href="javascript:sforce.console.openPrimaryTab(null,'/{!ata.id}',true,'{!JSEncode(ata.Name)}');">{!ata.Name} </a>
+                    </apex:column>
+                    <apex:column value="{!ata.AccountNumber}"/>
+                    <apex:column value="{!ata.Email__c}"/>
+                </apex:pageblockTable>
+            </apex:pageblock>
+        </apex:outputPanel>
+        <apex:actionFunction name="Submit" action="{!Submit}" status="categoryAjaxStatus" reRender="AccountDetOP,AccountDetailId"/>
+        <apex:actionFunction name="OpenAccountDetail" action="{!OpenAccountDetail}" status="categoryAjaxStatus" reRender="AccountDetailId">
+            <apex:param name="accid" value="" />
+        </apex:actionFunction>
+        </apex:form>
+        <!--
+        <apex:outputPanel id="AccountDetailId">
+            <apex:pageblock title="Cases" rendered="{!SelectedAccId!=null}" >
+                <apex:pageBlockTable value="{!SelectedAccCases}" var="cas">
+                    <apex:column value="{!cas.CaseNumber}"/>
+                    <apex:column value="{!cas.Contact.name}"/>
+                    <apex:column value="{!cas.Subject}"/>
+                    <apex:column value="{!cas.Priority}"/>
+                    <apex:column value="{!cas.Status}"/>
+                    <apex:column value="{!cas.Owner.name}"/>
+              </apex:pageBlockTable>
+                <apex:detail subject="{!SelectedAccId}" inlineEdit="true" relatedList="false" title="Account"/> 
+            </apex:pageblock>
+        </apex:outputPanel>
+        -->
+        
+    
+</apex:page>
