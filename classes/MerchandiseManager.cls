@@ -1,0 +1,27 @@
+@RestResource(urlMapping='/Merchandise/*')
+global with sharing class MerchandiseManager {
+	@httpGet
+	global static Merchandise__c getMerchandiseById(){
+		Restrequest req = RestContext.request;
+		String merchId = req.requestURI.subString(req.requestURI.lastIndexOf('/')+1);
+		Merchandise__c result =
+				[SELECT Name,Description__c,Price__c,Inventory__c
+				FROM Merchandise__c
+				WHERE Id = :merchId];
+		return result;
+	}
+	@httpPost
+	global static String createMerchandise(String name, 
+	String description, Decimal price, Double inventory){
+		Merchandise__c m = new Merchandise__c
+		( Name=name,
+		Description__c= description,
+		Price__c= price,
+		Inventory__c=inventory
+		) ;
+		insert m;
+		return m.id;
+	}
+	
+
+}
